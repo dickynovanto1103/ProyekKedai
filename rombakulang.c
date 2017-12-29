@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 void tulisanthai()
     {
         printf (" _____   _   _   _____   _         ___   _   _   _____\n"
@@ -148,13 +149,21 @@ int main()
             break;
 
             case 2 :
-                printf ("Your order :\n");
-                printf ("Do you want to pay?"); //y or n
-
+                printf ("1. Want to pay?:\n");
+                printf ("2. Back to main menu?"); //y or n
+                int pilihan;
+                scanf("%d",&pilihan);
+                if(pilihan==1){
+                    printf("What do you want to pay?\n");
+                    //menampilkan list hutang
+                }else{
+                    break;
+                }
+                break;
         }
     }while (input!=3);
 
-    printf ("Thankyou for coming.");
-    system("cls");
+    printf ("Thankyou for coming.\n");
+
     return 0;
 }
