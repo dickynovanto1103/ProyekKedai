@@ -1,0 +1,8 @@
+Full Pork#45000
+Komplit Beef#40000
+Chick&Crisp#30000
+Pork Jianbing#30000
+Beef Jianbing#30000
+Chicken Jianbing#25000
+Vegie Jianbing#20000
+Original Jianbing#15000
