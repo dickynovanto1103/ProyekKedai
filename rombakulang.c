@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void tulisanthai()
     {
@@ -30,10 +31,11 @@ void tulisanjian()
 
 int main()
 {
-    int input,cntStand=0,cntThai=0,cntNasrem=0,cntJian=0,orderchoice;
+    int input,input_order,cntStand=0,cntThai=0,cntNasrem=0,cntJian=0,orderchoice;
     int harganasrem[100],hargateh[100],hargajian[100];
     int i,k;
     char orderapa[10][100],teh[100][100],nasrem[100][100],jian[100][100];
+
 
 
     //stand
@@ -95,66 +97,88 @@ int main()
 
         switch(input)
         {
-            case 1 :
-            printf ("What do you want to order?\n");
-            for (i=0;i<cntStand;i++)
-            {
-                printf("%d. %s",i+1,orderapa[i]);
-            }
+        case 1 :
+            printf ("1. Choose stand\n"
+                    "2. Search a menu\n"
+                    "3. Sort\n"
+                    "4. Go back\n");
             printf ("Your choice : ");
-            scanf ("%d",&orderchoice);
-            printf("\n");
+            scanf ("%d",&input_order);
 
-            if (orderchoice==1) //thaicha
+            switch (input_order)
             {
-                tulisanthai();
-                for(k=0;k<cntThai;k++)
+            case 1 :
+                printf ("What do you want to order?\n");
+                for (i=0;i<cntStand;i++)
                 {
-                    printf ("%s \t: %d",teh[k],hargateh[k]);
-                    printf("\n");
+                    printf("%d. %s",i+1,orderapa[i]);
                 }
+                printf ("Your choice : ");
+                scanf ("%d",&orderchoice);
+                printf("\n");
 
-                printf ("Please write your order(number): ");
-                printf("How many?\n");
-                printf("Do you want to order again in this stand?\n");
-
-            }else if (orderchoice==2) //nasi goreng mafia
-            {
-                tulisannasgor();
-                for(k=0;k<cntNasrem;k++)
+                if (orderchoice==1) //thaicha
                 {
-                    printf ("%s \t: %d",nasrem[k],harganasrem[k]);
-                    printf("\n");
-                }
+                    tulisanthai();
+                    for(k=0;k<cntThai;k++)
+                    {
+                        printf ("%s \t: %d",teh[k],hargateh[k]);
+                        printf("\n");
+                    }
 
-                printf ("Please write your order(number): ");
-                printf ("Do you want to add topping?\n");
-                printf("How many?\n");
-                printf("Do you want to order again in this stand?\n");
+                    printf ("Please write your order(number): ");
+                    printf("How many?\n");
+                    printf("Do you want to order again in this stand?\n");
 
-            }else if (orderchoice==3) //jianbing heroes
-            {
-                tulisanjian();
-                for(k=0;k<cntJian;k++)
+                }else if (orderchoice==2) //nasi goreng mafia
                 {
-                    printf ("%s \t: %d",jian[k],hargajian[k]);
-                    printf("\n");
-                }
+                    tulisannasgor();
+                    for(k=0;k<cntNasrem;k++)
+                    {
+                        printf ("%s \t: %d",nasrem[k],harganasrem[k]);
+                        printf("\n");
+                    }
 
-                printf ("Please write your order(number): ");
-                printf("How many?\n");
-                printf("Do you want to order again in this stand?\n");
-            }
-            break;
+                    printf ("Please write your order(number): ");
+                    printf ("Do you want to add topping?\n");
+                    printf("How many?\n");
+                    printf("Do you want to order again in this stand?\n");
+
+                }else if (orderchoice==3) //jianbing heroes
+                {
+                    tulisanjian();
+                    for(k=0;k<cntJian;k++)
+                    {
+                        printf ("%s \t: %d",jian[k],hargajian[k]);
+                        printf("\n");
+                    }
+
+                    printf ("Please write your order(number): ");
+                    printf("How many?\n");
+                    printf("Do you want to order again in this stand?\n");
+                }
+                break;
 
             case 2 :
-                printf ("Your order :\n");
-                printf ("Do you want to pay?"); //y or n
+                break;
+            case 3 :
+                break;
+            case 4 :
+                printf ("\n");
+                break;
+
+
+            }
+            break;
+        case 2 :
+            printf ("Your order :\n");
+            printf ("Do you want to pay?"); //y or n
 
         }
     }while (input!=3);
 
     printf ("Thankyou for coming.");
+
     system("cls");
     return 0;
 }
