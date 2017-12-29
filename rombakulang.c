@@ -278,7 +278,8 @@ int main()
                     history[idxHistory].hargaSatuan = listHargaDitemukan[pilihan];
                     history[idxHistory].banyakOrder = banyakPesanan;
                     idxHistory++;
-
+                    
+                    int j;
                     printf("list History\n");
                     for(j=0;j<idxHistory;j++){
                         printf("%s %d %d\n",history[j].namaBarang,history[j].hargaSatuan,history[j].banyakOrder);
