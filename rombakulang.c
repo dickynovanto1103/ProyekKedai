@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct Pembelian{
+    char namaBarang[100];
+    int hargaSatuan;
+    int banyakOrder;
+};
+
 
 void tulisanthai()
     {
@@ -36,7 +42,8 @@ int main()
     int harganasrem[100],hargateh[100],hargajian[100];
     int i,k;
     char orderapa[10][100],teh[100][100],nasrem[100][100],jian[100][100];
-
+    struct Pembelian history[100];
+    int idxHistory = 0;
 
 
     //stand
@@ -128,7 +135,23 @@ int main()
                     }
 
                     printf ("Please write your order(number): ");
+                    int orderThai,orderThaiJumlah;
+                    scanf ("%d",&orderThai);
                     printf("How many?\n");
+                    scanf ("%d",&orderThaiJumlah);
+                    printf("order jumlah: %d\n",orderThaiJumlah);
+
+                    printf("makanan: %s\n",teh[orderThai]);
+                    strcpy(history[idxHistory].namaBarang,teh[orderThai]);
+                    printf("namaBarang: %s\n",history[idxHistory].namaBarang);
+                    //printf("halo2");
+                    history[idxHistory].hargaSatuan = hargateh[orderThai];
+                    //printf("halo3");
+                    history[idxHistory].banyakOrder = orderThaiJumlah;
+                    //printf("halo");
+                    idxHistory++;
+
+
                     printf("Do you want to order again in this stand?\n");
 
                 }else if (orderchoice==2) //nasi goreng mafia
@@ -139,10 +162,17 @@ int main()
                         printf ("%s \t: %d",nasrem[k],harganasrem[k]);
                         printf("\n");
                     }
-
+                    int orderNasrem,orderNasremJumlah;
                     printf ("Please write your order(number): ");
-                    printf ("Do you want to add topping?\n");
+                    scanf ("%d",&orderNasrem);
                     printf("How many?\n");
+                    scanf ("%d",&orderNasremJumlah);
+
+                    strcpy(history[idxHistory].namaBarang,nasrem[orderNasrem]);
+                    history[idxHistory].hargaSatuan = harganasrem[orderNasrem];
+                    history[idxHistory].banyakOrder = orderNasremJumlah;
+                    idxHistory++;
+
                     printf("Do you want to order again in this stand?\n");
 
                 }else if (orderchoice==3) //jianbing heroes
@@ -154,10 +184,26 @@ int main()
                         printf("\n");
                     }
 
-                    printf ("Please write your order(number): ");
+                    int orderJian,orderJianJumlah;
 
+                    printf ("Please write your order(number): ");
+                    scanf ("%d",&orderJian);
                     printf("How many?\n");
+                    scanf ("%d",&orderJianJumlah);
+
+
+                    strcpy(history[idxHistory].namaBarang,jian[orderJian]);
+                    history[idxHistory].hargaSatuan = hargajian[orderJian];
+                    history[idxHistory].banyakOrder = orderJianJumlah;
+                    idxHistory++;
+
                     printf("Do you want to order again in this stand?\n");
+
+                }
+                int j;
+                printf("list History\n");
+                for(j=0;j<idxHistory;j++){
+                    printf("%s %d %d\n",history[j].namaBarang,history[j].hargaSatuan,history[j].banyakOrder);
                 }
                 break;
 
