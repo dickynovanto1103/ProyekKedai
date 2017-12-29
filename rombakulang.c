@@ -139,20 +139,20 @@ int main()
                     scanf ("%d",&orderThai);
                     printf("How many?\n");
                     scanf ("%d",&orderThaiJumlah);
-                    printf("order jumlah: %d\n",orderThaiJumlah);
+                    printf ("\n");
+                    //printf("order jumlah: %d\n",orderThaiJumlah);
 
-                    printf("makanan: %s\n",teh[orderThai]);
+                    printf ("Your order :\n");
                     strcpy(history[idxHistory].namaBarang,teh[orderThai]);
-                    printf("namaBarang: %s\n",history[idxHistory].namaBarang);
+                    printf("%s\n",history[idxHistory].namaBarang);
                     //printf("halo2");
                     history[idxHistory].hargaSatuan = hargateh[orderThai];
                     //printf("halo3");
                     history[idxHistory].banyakOrder = orderThaiJumlah;
                     //printf("halo");
+                    printf ("Amount : %d",orderThaiJumlah);
                     idxHistory++;
 
-
-                    printf("Do you want to order again in this stand?\n");
 
                 }else if (orderchoice==2) //nasi goreng mafia
                 {
@@ -173,7 +173,6 @@ int main()
                     history[idxHistory].banyakOrder = orderNasremJumlah;
                     idxHistory++;
 
-                    printf("Do you want to order again in this stand?\n");
 
                 }else if (orderchoice==3) //jianbing heroes
                 {
@@ -197,14 +196,8 @@ int main()
                     history[idxHistory].banyakOrder = orderJianJumlah;
                     idxHistory++;
 
-                    printf("Do you want to order again in this stand?\n");
+                }
 
-                }
-                int j;
-                printf("list History\n");
-                for(j=0;j<idxHistory;j++){
-                    printf("%s %d %d\n",history[j].namaBarang,history[j].hargaSatuan,history[j].banyakOrder);
-                }
                 break;
 
             case 2 :
@@ -224,8 +217,15 @@ int main()
             printf ("2. Back to main menu?"); //y or n
             int pilihan;
             scanf("%d",&pilihan);
-            if(pilihan==1){
+            if(pilihan==1)
+                {
                 printf("What do you want to pay?\n");
+
+                int j;
+                printf("list History\n");
+                for(j=0;j<idxHistory;j++){
+                    printf("%s %d %d\n",history[j].namaBarang,history[j].hargaSatuan,history[j].banyakOrder);
+                }
                 //menampilkan list hutang
             }else{
                 break;
