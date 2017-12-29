@@ -277,9 +277,19 @@ int main()
                     printf("\nWhat do you want to order?\n");
                     int pilihan;
                     scanf("%d",&pilihan);
+                    printf("\nHow many?\n");
+                    int banyakPesanan;
+                    scanf("%d",&banyakPesanan);
                     printf("\n\nBerhasil membeli makanan!!\n");
-                    
+                    strcpy(history[idxHistory].namaBarang,listBarangDitemukan[pilihan]);
+                    history[idxHistory].hargaSatuan = listHargaDitemukan[pilihan];
+                    history[idxHistory].banyakOrder = banyakPesanan;
+                    idxHistory++;
 
+                    printf("list History\n");
+                    for(j=0;j<idxHistory;j++){
+                        printf("%s %d %d\n",history[j].namaBarang,history[j].hargaSatuan,history[j].banyakOrder);
+                    }
                 }
 
 
