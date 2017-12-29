@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 
 void tulisanthai()
@@ -29,6 +30,21 @@ void tulisanjian()
                 printf ("\n");
     }
 
+int isStringMatched(char input[], char kata[]){
+    int panjangInput = strlen(input);
+    int panjangKata = strlen(kata);
+
+    int i,j;
+    for(i=0;i<=panjangKata-panjangInput;i++){
+        j=0;
+        while(j<panjangInput && kata[i+j]==input[j]){
+            j++;
+        }
+        if(j==panjangInput){return 1;}
+    }
+    return 0;
+}
+
 
 int main()
 {
@@ -37,7 +53,10 @@ int main()
     int i,k;
     char orderapa[10][100],teh[100][100],nasrem[100][100],jian[100][100];
 
+    int listHargaSemuaBarang[100];
+    char listNamaSemuaBarang[100][100];
 
+    int indeksBarangTotal = 0;
 
     //stand
     FILE *fileStand;
@@ -56,6 +75,10 @@ int main()
     while(!feof(fileThai))
     {
         fscanf(fileThai,"%[^#]#%d\n",&teh[cntThai],&hargateh[cntThai]);
+        //menambahkan ke array semua barang
+        strcpy(listNamaSemuaBarang[indeksBarangTotal], teh[cntThai]);
+        listHargaSemuaBarang[indeksBarangTotal] = hargateh[cntThai];
+        indeksBarangTotal++;
         cntThai++;
     }
     fclose(fileThai);
@@ -66,6 +89,10 @@ int main()
     while(!feof(fileNasrem))
     {
         fscanf(fileNasrem,"%[^#]#%d\n",&nasrem[cntNasrem],&harganasrem[cntNasrem]);
+        //menambahkan ke array semua barang
+        strcpy(listNamaSemuaBarang[indeksBarangTotal], nasrem[cntNasrem]);
+        listHargaSemuaBarang[indeksBarangTotal] = harganasrem[cntNasrem];
+        indeksBarangTotal++;
         cntNasrem++;
     }
     fclose(fileNasrem);
@@ -75,7 +102,12 @@ int main()
     fileJian = fopen ("jianbing.txt","r");
     while(!feof(fileJian))
     {
+
         fscanf(fileJian,"%[^#]#%d\n",&jian[cntJian],&hargajian[cntJian]);
+        //menambahkan ke array semua barang
+        strcpy(listNamaSemuaBarang[indeksBarangTotal], jian[cntJian]);
+        listHargaSemuaBarang[indeksBarangTotal] = hargajian[cntJian];
+        indeksBarangTotal++;
         cntJian++;
     }
     fclose(fileJian);
@@ -162,14 +194,53 @@ int main()
                 break;
 
             case 2 :
+            {
+                char inputMakanan[100];
+                scanf("\n%[^\n]s",inputMakanan);
+                printf("input makanan: %s\n",inputMakanan);
+
+                char listBarangDitemukan[100][100];
+                int listHargaDitemukan[100];
+                int cntDitemukan = 0;
+
+                //cari makanan dari sini yang sesuai disini
+                for(i=0;i<indeksBarangTotal;i++){
+                    char barang[100];
+                    int harga;
+
+                    strcpy(barang,listNamaSemuaBarang[i]);
+                    harga = listHargaSemuaBarang[i];
+
+                    //cek apakah string inputMakanan ada di ada di string barang
+                    if(isStringMatched(inputMakanan,barang)){
+                        strcpy(listBarangDitemukan[cntDitemukan], barang);
+                        listHargaDitemukan[cntDitemukan] = harga;
+                        cntDitemukan++;
+                    }
+
+                }
+
+                if(cntDitemukan==0){printf("Tidak ditemukan menu yang diinginkan\n");}
+                else{
+                    for(i=0;i<cntDitemukan;i++){
+                        printf("%d: %s %d\n",i+1, listBarangDitemukan[i], listHargaDitemukan[i]);
+                    }
+                    printf("\nWhat do you want to order?\n");
+                    int pilihan;
+                    scanf("%d",&pilihan);
+                    printf("\n\nBerhasil membeli makanan!!\n");
+                    
+
+                }
+
+
+            }
                 break;
             case 3 :
                 break;
             case 4 :
                 printf ("\n");
                 break;
-
-
             }
             break;
 
@@ -182,6 +253,7 @@ int main()
                 printf("What do you want to pay?\n");
                 //menampilkan list hutang
             }else{
+                printf("\n");
                 break;
             }
             break;
