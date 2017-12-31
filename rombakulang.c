@@ -122,7 +122,17 @@ int main()
     }
     fclose(fileJian);
 
+    //history
+    FILE *fileDaftarOrder;
+    fileDaftarOrder = fopen("daftarOrder.txt","r");
 
+    while(!feof(fileDaftarOrder)){
+        fscanf(fileDaftarOrder,"%[^#]#%d#%d\n",&history[idxHistory].namaBarang, &history[idxHistory].hargaSatuan, &history[idxHistory].banyakOrder);
+        idxHistory++;
+    }
+
+    if(history[0].hargaSatuan==0){idxHistory = 0;}
+    
 
     do{
     do
@@ -320,6 +330,11 @@ int main()
         }
     }while (input!=3);
 
+    FILE *fileDaftarOrderOutput;
+    fileDaftarOrderOutput = fopen("daftarOrder.txt","w");
+    for(i=0;i<idxHistory;i++){
+        fprintf(fileDaftarOrderOutput,"%s#%d#%d\n",history[i].namaBarang,history[i].hargaSatuan,history[i].banyakOrder);
+    }
     printf ("Thankyou for coming.\n");
     return 0;
 }
